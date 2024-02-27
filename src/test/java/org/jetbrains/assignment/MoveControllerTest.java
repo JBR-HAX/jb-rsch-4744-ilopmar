@@ -68,6 +68,28 @@ class MoveControllerTest {
         );
   }
 
+  @Test
+  void testMoves() {
+    ResponseEntity<List<Movement>> response = restClient.post()
+        .uri("/moves")
+        .body(locations())
+        .contentType(MediaType.APPLICATION_JSON)
+        .retrieve()
+        .toEntity(new ParameterizedTypeReference<>() {
+        });
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(response.getBody())
+        .hasSize(4)
+        .extracting(Movement::direction, Movement::steps)
+        .containsExactly(
+            Tuple.tuple(EAST, 1),
+            Tuple.tuple(NORTH, 3),
+            Tuple.tuple(WEST, 1),
+            Tuple.tuple(SOUTH, 3)
+        );
+  }
+
   private List<Movement> movements() {
     return List.of(
         new Movement(EAST, 1),
@@ -75,6 +97,16 @@ class MoveControllerTest {
         new Movement(EAST, 3),
         new Movement(SOUTH, 5),
         new Movement(WEST, 2)
+    );
+  }
+
+  private List<Location> locations() {
+    return List.of(
+        new Location(0, 0),
+        new Location(1, 0),
+        new Location(1, 3),
+        new Location(0, 3),
+        new Location(0, 0)
     );
   }
 

@@ -19,4 +19,9 @@ public class MoveController {
     return moveService.saveMovements(movements);
   }
 
+  @PostMapping("/moves")
+  List<Movement> movements(@RequestBody List<Location> locations) {
+    return moveService.saveLocations(locations);
+  }
+
 }

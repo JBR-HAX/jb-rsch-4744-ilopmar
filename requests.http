@@ -17,22 +17,22 @@ Content-Type: application/json
 [
   {
     "direction": "EAST",
-    "steps": 4
-  },
-  {
-    "direction": "WEST",
-    "steps": 2
+    "steps": 1
   },
   {
     "direction": "NORTH",
-    "steps": 2
+    "steps": 3
+  },
+  {
+    "direction": "EAST",
+    "steps": 3
+  },
+  {
+    "direction": "SOUTH",
+    "steps": 5
   },
   {
     "direction": "WEST",
-    "steps": 2
-  },
-  {
-    "direction": "NORTH",
     "steps": 2
   }
 ]

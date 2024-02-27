@@ -22,4 +22,13 @@ public class MoveService {
     return locations;
   }
 
+  public List<Movement> saveLocations(List<Location> locations) {
+    List<Movement> movements = MoveConverter.convertToMovement(locations);
+
+    var moveEntity = new MoveEntity(UUID.randomUUID(), movements, locations);
+    moveRepository.save(moveEntity);
+
+    return movements;
+  }
+
 }
